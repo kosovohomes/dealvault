@@ -1,0 +1,10 @@
+node_modules/
+.vercel/
+.env
+.env.local
+data/store.json.tmp
+data/store.json.corrupt-*
+data/*.log
+*.zip
+.DS_Store
+*.log

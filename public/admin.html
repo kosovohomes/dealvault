@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operator console — DealVault</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#214534">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/doc-skin.css?v=1">
+<link rel="stylesheet" href="/assets/css/vault.css?v=1">
+</head>
+<body class="cp-page">
+<a class="cp-skip" href="#main">Skip to content</a>
+<header class="cp-bar">
+  <div class="cp-bar__inner">
+    <a class="cp-brand" href="/">
+      <svg class="cp-brand__mark" viewBox="0 0 48 48" role="img" aria-label="DealVault vault dial"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+      <span class="cp-brand__text"><span class="cp-brand__name">DealVault</span><span class="cp-brand__sub">Operator console</span></span>
+    </a>
+    <nav class="cp-nav" aria-label="Primary">
+      <ul class="cp-nav__list">
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/">Site</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/admin" aria-current="page">Console</a></li>
+      </ul>
+    </nav>
+    <div class="cp-bar__actions">
+      <button class="cp-btn cp-btn--ghost cp-btn--sm" type="button" id="adminSignout" hidden>Sign out</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+
+<!-- LOGIN -->
+<section class="cp-section" id="loginView">
+  <div class="cp-wrap">
+    <div class="cp-gate" style="padding-block:1rem">
+      <div class="cp-gate__card">
+        <p class="cp-gate__kicker">Operator console</p>
+        <h1>Unlock the console.</h1>
+        <p class="cp-gate__lead">Enter the console key (<span class="is-mono">ADMIN_KEY</span>). Sessions last twelve hours; every action inside is written to the audit log.</p>
+        <div class="cp-form-status" id="loginStatus" role="alert" aria-live="polite"></div>
+        <form id="loginForm" novalidate>
+          <div class="cp-field">
+            <label for="adminKey">Console key <span>Required</span></label>
+            <input id="adminKey" name="key" type="password" autocomplete="current-password" required>
+          </div>
+          <div class="cp-form-actions" style="margin-block-start:1.2rem">
+            <button class="cp-btn cp-btn--primary" type="submit">Open the console</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONSOLE -->
+<div id="consoleView" hidden>
+<div class="cp-intro">
+  <div class="cp-intro__inner">
+    <div class="cp-intro__eyebrow">
+      <span class="cp-pill">Operator console</span>
+      <span class="cp-intro__note" id="consoleNote">Session expires in 12 hours</span>
+    </div>
+    <h1>The pipeline at a glance.</h1>
+    <div class="cp-intro__meta">
+      <span class="cp-tag" id="consoleCatalogue">—</span>
+      <span class="cp-tag">Every action here is audited</span>
+    </div>
+  </div>
+</div>
+<section class="cp-section cp-section--tight">
+  <div class="cp-wrap">
+    <div class="cp-tabbar" role="tablist">
+      <button type="button" class="is-active" data-tab="overview" role="tab">Overview</button>
+      <button type="button" data-tab="requests" role="tab" data-count="0">Requests</button>
+      <button type="button" data-tab="investors" role="tab">Investors</button>
+      <button type="button" data-tab="projects" role="tab">Projects</button>
+      <button type="button" data-tab="import" role="tab">Import</button>
+      <button type="button" data-tab="audit" role="tab">Audit log</button>
+    </div>
+
+    <div data-panel="overview">
+      <div class="cp-stat-row" id="overviewStats"></div>
+      <div class="cp-brief-grid">
+        <div>
+          <h2 style="font-family:var(--font-display);font-size:1.15rem;letter-spacing:-.02em;margin:0 0 .9rem">Latest activity</h2>
+          <div class="cp-table-wrap">
+            <table class="cp-table"><thead><tr><th>When</th><th>Event</th><th>Who</th><th>Detail</th></tr></thead><tbody id="overviewActivity"><tr><td colspan="4">Loading…</td></tr></tbody></table>
+          </div>
+        </div>
+        <aside class="cp-brief__side">
+          <div class="cp-sidebox">
+            <h3>Interest by project</h3>
+            <dl class="cp-kv" id="overviewInterest"></dl>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div data-panel="requests" hidden>
+      <div class="cp-table-wrap">
+        <table class="cp-table"><thead><tr><th>Investor</th><th>Project</th><th>Status</th><th>Requested</th><th>Decision</th></tr></thead><tbody id="requestsBody"><tr><td colspan="5">Loading…</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <div data-panel="investors" hidden>
+      <div class="cp-table-wrap">
+        <table class="cp-table"><thead><tr><th>Investor</th><th>Firm</th><th>Status</th><th>NDA</th><th>Requests</th><th></th></tr></thead><tbody id="investorsBody"><tr><td colspan="6">Loading…</td></tr></tbody></table>
+      </div>
+      <div id="investorDetail" hidden style="margin-top:2rem"></div>
+    </div>
+
+    <div data-panel="projects" hidden>
+      <div class="cp-table-wrap">
+        <table class="cp-table"><thead><tr><th>Project</th><th>Sector</th><th>Stage</th><th>Ticket</th><th>Docs</th><th>Interest</th><th>Updated</th></tr></thead><tbody id="projectsBody"><tr><td colspan="7">Loading…</td></tr></tbody></table>
+      </div>
+    </div>
+
+    <div data-panel="import" hidden>
+      <div class="cp-brief-grid">
+        <div>
+          <p style="margin:0 0 1rem;color:var(--muted);font-size:.85rem;max-width:64ch">
+            Import project briefs from a CSV or XLSX file. Every run is validated first —
+            validate-only never touches the catalogue. Rows with errors are rejected;
+            rows that validate are created, or updated when the slug already exists.
+            <a href="/api/admin/import/template.csv" download>Download the template</a> for the exact columns.
+          </p>
+          <div class="cp-filters" style="margin-top:0;align-items:end">
+            <div class="cp-field" style="flex:2;min-width:220px">
+              <label for="importFile">CSV or XLSX file</label>
+              <input id="importFile" type="file" accept=".csv,.xlsx,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+            </div>
+            <div class="cp-field">
+              <label for="importMode">Run mode</label>
+              <select id="importMode">
+                <option value="dry_run" selected>Validate only (dry run)</option>
+                <option value="commit">Validate and commit</option>
+              </select>
+            </div>
+            <button class="cp-btn cp-btn--primary cp-btn--sm" type="button" id="importRun">Run import</button>
+          </div>
+          <div class="cp-form-status" id="importStatus" role="alert" aria-live="polite"></div>
+          <div id="importResult" style="margin-top:1.2rem"></div>
+        </div>
+        <aside class="cp-brief__side">
+          <div class="cp-sidebox">
+            <h3>Column reference</h3>
+            <dl class="cp-kv" style="font-size:.72rem">
+              <div><dt>Title</dt><dd>required</dd></div>
+              <div><dt>Summary</dt><dd>required · 20–1200 chars</dd></div>
+              <div><dt>Sector · Stage · Geography</dt><dd>required — they drive the filters</dd></div>
+              <div><dt>Ticket</dt><dd>required · e.g. US$500K (K/M enables size filters)</dd></div>
+              <div><dt>Slug</dt><dd>optional — derived from the title; re-using a slug updates that project</dd></div>
+              <div><dt>Status</dt><dd>open · published · draft · under review · paused · closed (draft/paused hides the project from investors)</dd></div>
+              <div><dt>Visibility</dt><dd>public · registered · invitation · hidden (stored; hidden behaves like draft)</dd></div>
+              <div><dt>Tags · Highlights · Story</dt><dd>optional — separate entries with a semicolon</dd></div>
+              <div><dt>Currency · Link · Updated</dt><dd>optional · USD default · http(s) link · YYYY-MM-DD</dd></div>
+            </dl>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <div data-panel="audit" hidden>
+      <div class="cp-filters" style="margin-top:0">
+        <div class="cp-field">
+          <label for="auditAction">Action prefix</label>
+          <select id="auditAction">
+            <option value="">All actions</option>
+            <option value="auth">auth.*</option>
+            <option value="request">request.*</option>
+            <option value="nda">nda.*</option>
+            <option value="doc">doc.*</option>
+            <option value="question">question.*</option>
+            <option value="admin">admin.*</option>
+            <option value="import">import.*</option>
+          </select>
+        </div>
+        <div class="cp-field">
+          <label for="auditProject">Project</label>
+          <select id="auditProject"><option value="">All projects</option></select>
+        </div>
+        <button class="cp-btn cp-btn--ghost cp-btn--sm cp-filters__reset" type="button" id="auditApply">Apply</button>
+      </div>
+      <div class="cp-table-wrap">
+        <table class="cp-table"><thead><tr><th>When</th><th>Action</th><th>Who</th><th>Project</th><th>Detail</th></tr></thead><tbody id="auditBody"><tr><td colspan="5">Loading…</td></tr></tbody></table>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+</main>
+<footer class="cp-foot">
+  <div class="cp-foot__inner">
+    <div class="cp-foot__bottom">
+      <span>© <span data-year>2026</span> DealVault Operations.</span>
+      <div class="cp-foot__legal"><a href="/legal#terms">Terms</a><a href="/legal#privacy">Privacy</a></div>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=1" defer></script>
+<script src="/assets/js/app.js?v=1" defer></script>
+<script src="/assets/js/admin.js?v=1" defer></script>
+</body>
+</html>

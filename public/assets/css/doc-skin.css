@@ -1,0 +1,934 @@
+/* ==========================================================================
+   CafePass document skin
+   --------------------------------------------------------------------------
+   One editorial system for every legacy document: paper canvas, hairline
+   rules, serif display type, tabular data, and the CafePass green / terracotta
+   / gold palette. Loaded last so it settles each document's own styles.
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Shared fixes (chrome)
+   -------------------------------------------------------------------------- */
+
+/* the print/PDF icon in document intros must never inherit document svg rules */
+.cp-btn svg,
+.cp-intro__actions svg {
+  width: 16px !important;
+  height: 16px !important;
+  flex: 0 0 auto;
+}
+
+/* print stays a quiet action, not a full-width bar */
+.cp-intro__actions {
+  width: auto !important;
+  margin-inline-start: 0 !important;
+}
+.cp-intro__actions .cp-btn { flex: 0 0 auto !important; }
+
+/* legacy widgets that injected themselves into the page */
+.cp-doc .back-to-top,
+.cp-doc .theme-toggle,
+.cp-doc .menu-toggle,
+.cp-doc .slide-menu,
+.cp-doc .progress-bar,
+.cp-doc .btn[style*="position: fixed"],
+.cp-doc button[style*="position: fixed"] {
+  display: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Canvas and typography
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose {
+  color: var(--ink);
+  font-family: var(--font-ui) !important;
+  font-size: 16px;
+  line-height: 1.72;
+}
+
+.cp-doc--prose :where(p, li, td, th, label, input, select, textarea, button, a, strong, em, small, blockquote, figcaption, div, span, section):not(.fas):not(.far):not(.fab):not([class*="fa-"]) {
+  font-family: var(--font-ui) !important;
+}
+
+.cp-doc--prose :where(h1, h2, h3, h4, h5, h6) {
+  color: inherit;
+  text-wrap: balance;
+}
+
+.cp-doc--prose h1,
+.cp-doc--prose h2,
+.cp-doc--prose h3 {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  line-height: 1.14 !important;
+}
+
+.cp-doc--prose h1 { font-size: clamp(2rem, 3.6vw, 2.7rem) !important; margin-block: 0 0.6em; }
+.cp-doc--prose h2,
+.cp-doc--prose .section-title {
+  font-size: clamp(1.5rem, 2.4vw, 1.95rem) !important;
+  margin-block: 0 0.7em !important;
+}
+.cp-doc--prose h3 { font-size: clamp(1.1rem, 1.6vw, 1.26rem) !important; margin-block: 0 0.45em !important; }
+.cp-doc--prose h4,
+.cp-doc--prose h5,
+.cp-doc--prose h6 {
+  font-family: var(--font-ui) !important;
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  line-height: 1.5 !important;
+  text-transform: uppercase;
+  margin-block: 0 0.5em !important;
+}
+
+.cp-doc--prose p { margin-block: 0 1em; }
+.cp-doc--prose p,
+.cp-doc--prose li { max-width: 76ch; }
+.cp-doc--prose li { margin-block: 0.25em; }
+.cp-doc--prose small { font-size: 0.82rem; color: var(--muted); }
+.cp-doc--prose strong { font-weight: 600; color: var(--ink); }
+.cp-doc--prose em { font-style: italic; }
+
+.cp-doc--prose a:not([class]) {
+  color: var(--green);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+.cp-doc--prose a:not([class]):hover { color: var(--terra); }
+
+.cp-doc--prose hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin-block: 2rem;
+}
+
+/* layout ------------------------------------------------------------------ */
+
+.cp-doc--prose .container,
+.cp-doc--prose .container-fluid {
+  width: min(1040px, 100% - 2.5rem) !important;
+  max-width: none !important;
+  margin-inline: auto !important;
+  padding-inline: 0 !important;
+}
+
+.cp-doc--prose .row { --bs-gutter-x: 1.5rem; }
+
+.cp-doc--prose section { scroll-margin-top: calc(var(--bar-h) + 24px); }
+.cp-doc--prose > section { padding-block: clamp(2.25rem, 4vw, 3.5rem); }
+.cp-doc--prose :is(h1, h2, h3, h4) { scroll-margin-top: calc(var(--bar-h) + 28px); }
+
+/* legacy fixed-column grids must reflow like a report, not clip */
+.cp-doc--prose :is(.stats-grid, .advantages-grid, .metrics-grid, .team-grid,
+  .grid-2, .grid-3, .grid-4, .stat-grid, .market-stats, .result-grid,
+  .charts-grid, .dashboard-grid, .tables-grid, .key-players, .region-grid,
+  .fixed-costs-grid, .input-grid, .budget-grid, .base-grid, .capital-breakdown,
+  .business-model-grid, .business-model, .comparison-metrics, .problem-points,
+  .analytics, .dashboard) {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)) !important;
+}
+
+/* imagery ----------------------------------------------------------------- */
+
+.cp-doc--prose img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+.cp-doc--prose figure { margin: 1.5rem 0; }
+.cp-doc--prose figcaption {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Cards, panels and callouts
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose :is(
+  .card, .panel, .stat-card, .advantage-card, .model-card, .player-card,
+  .problem-card, .metric-card, .comparison-card, .dashboard-card,
+  .team-member, .revenue-stream, .funding-ask, .calculator, .form-container,
+  .form-section, .confidentiality-box
+) {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+
+.cp-doc--prose :is(
+  .card, .stat-card, .advantage-card, .model-card, .player-card,
+  .problem-card, .metric-card, .comparison-card, .dashboard-card,
+  .team-member, .revenue-stream, .form-section
+) {
+  padding: clamp(1.1rem, 2vw, 1.6rem) !important;
+}
+
+/* keep the Bootstrap grid intact inside cards */
+.cp-doc--prose .card.p-4 { padding: clamp(1.1rem, 2vw, 1.6rem) !important; }
+
+.cp-doc--prose :is(.card, .panel, .stat-card, .advantage-card, .model-card, .player-card, .problem-card, .metric-card) > :last-child { margin-bottom: 0; }
+
+/* section-level tinted panels become quiet report bands */
+.cp-doc--prose .section {
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* highlights: block callouts vs inline marks */
+.cp-doc--prose div.highlight,
+.cp-doc--prose .highlight:not(span) {
+  background: var(--gold-soft) !important;
+  border: 0 !important;
+  border-left: 2px solid var(--gold) !important;
+  border-radius: 0 !important;
+  padding: 1rem 1.2rem !important;
+  color: var(--ink-soft) !important;
+  box-shadow: none !important;
+}
+
+.cp-doc--prose span.highlight {
+  background: var(--gold-soft) !important;
+  color: var(--ink) !important;
+  padding: 0.05em 0.3em !important;
+  border-radius: 2px !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.cp-doc--prose .contract-info,
+.cp-doc--prose .toc {
+  background: var(--cream) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  padding: clamp(1rem, 2vw, 1.5rem) !important;
+}
+
+.cp-doc--prose .toc h3,
+.cp-doc--prose .toc h4 { margin-top: 0 !important; }
+
+.cp-doc--prose .toc a {
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.cp-doc--prose .toc a:hover { color: var(--green); border-bottom-color: var(--green); }
+
+/* --------------------------------------------------------------------------
+   Stats, metrics, numbers
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose :is(.stat-value, .stat-number, .metric-value, .player-stat-value,
+  .result-value, .dashboard-card-value, .comparison-value, .key-metric-value) {
+  font-family: var(--font-display) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.02em !important;
+  font-variant-numeric: tabular-nums lining-nums;
+  line-height: 1.05 !important;
+}
+
+.cp-doc--prose :is(.stat-label, .metric-label, .player-stat-label,
+  .result-label, .dashboard-card-title, .comparison-label, .key-metric-label) {
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  color: var(--muted) !important;
+  line-height: 1.45 !important;
+}
+
+.cp-doc--prose :is(.stat-icon, .card-icon, .advantage-icon, .model-icon,
+  .dashboard-card-icon, .player-icon) {
+  width: 2.5rem !important;
+  height: 2.5rem !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-deep) !important;
+  color: var(--green) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  font-size: 1rem !important;
+  margin-bottom: 0.9rem;
+}
+
+.cp-doc--prose .key-metric {
+  background: var(--paper-deep) !important;
+  border: 0 !important;
+  border-left: 2px solid var(--green) !important;
+  border-radius: 0 !important;
+  padding: 0.9rem 1.1rem !important;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons and controls
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose :is(.btn, button, input[type="submit"], input[type="button"], .cta-button):not(.fas):not(.far):not(.fab) {
+  font-family: var(--font-ui) !important;
+  font-size: 0.76rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  line-height: 1.2 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.3rem !important;
+  border: 1px solid var(--green) !important;
+  border-radius: 3px !important;
+  background: var(--green) !important;
+  background-image: none !important;
+  color: var(--paper-bright) !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.cp-doc--prose :is(.btn, button, input[type="submit"], input[type="button"]):hover {
+  background: var(--green-deep) !important;
+  border-color: var(--green-deep) !important;
+  color: var(--paper-bright) !important;
+}
+
+.cp-doc--prose :is(.btn-secondary, .btn-outline, .btn-ghost, .btn-light, .btn-link) {
+  background: transparent !important;
+  color: var(--green) !important;
+  border-color: var(--line-strong) !important;
+}
+.cp-doc--prose :is(.btn-secondary, .btn-outline, .btn-ghost, .btn-light, .btn-link):hover {
+  background: var(--green-soft) !important;
+  border-color: var(--green) !important;
+  color: var(--green) !important;
+}
+
+.cp-doc--prose :is(.btn-success, .btn-primary) {
+  background: var(--green) !important;
+  border-color: var(--green) !important;
+}
+
+.cp-doc--prose .btn-group { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+
+.cp-doc--prose .btn-sm,
+.cp-doc--prose .btn--sm { padding: 0.55rem 0.9rem !important; font-size: 0.7rem !important; }
+
+.cp-doc--prose button:disabled,
+.cp-doc--prose .btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* form fields ------------------------------------------------------------- */
+
+.cp-doc--prose :is(input[type="text"], input[type="number"], input[type="email"],
+  input[type="tel"], input[type="url"], input[type="date"], input[type="search"],
+  input:not([type]), select, textarea, .form-control) {
+  width: 100%;
+  font-family: var(--font-ui) !important;
+  font-size: 0.95rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+  color: var(--ink) !important;
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line-strong) !important;
+  border-radius: 3px !important;
+  padding: 0.7rem 0.8rem !important;
+  box-shadow: none !important;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.cp-doc--prose :is(input, select, textarea, .form-control):focus {
+  border-color: var(--green) !important;
+  box-shadow: 0 0 0 3px rgba(33, 69, 52, 0.12) !important;
+}
+
+.cp-doc--prose input::placeholder,
+.cp-doc--prose textarea::placeholder { color: #9b9588; }
+
+.cp-doc--prose label {
+  display: block;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  color: var(--muted) !important;
+  margin-bottom: 0.4rem;
+}
+
+.cp-doc--prose .form-group { margin-bottom: 1.15rem; }
+.cp-doc--prose .form-grid { display: grid; gap: 1.1rem 1.2rem; }
+
+.cp-doc--prose input[type="range"] {
+  accent-color: var(--green);
+  width: 100%;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.cp-doc--prose input[type="checkbox"],
+.cp-doc--prose input[type="radio"] {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--green);
+  margin-right: 0.5rem;
+  vertical-align: -0.15em;
+}
+
+.cp-doc--prose .radio-item,
+.cp-doc--prose .checkbox-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  padding: 0.7rem 0.85rem !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  background: var(--paper-bright) !important;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+}
+
+.cp-doc--prose .radio-item:hover,
+.cp-doc--prose .checkbox-item:hover { border-color: var(--green) !important; }
+
+.cp-doc--prose .radio-item label,
+.cp-doc--prose .checkbox-item label {
+  margin: 0 !important;
+  color: var(--ink-soft) !important;
+  font-size: 0.86rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0 !important;
+  text-transform: none;
+  cursor: pointer;
+}
+
+.cp-doc--prose .radio-group,
+.cp-doc--prose .checkbox-group { margin-bottom: 1rem; }
+
+.cp-doc--prose :is(.input-error, .error-message, .field-error) {
+  color: var(--terra) !important;
+  font-size: 0.78rem !important;
+}
+
+.cp-doc--prose :is(.input-wrapper, .input-group) { position: relative; }
+
+/* wizard ---------------------------------------------------------------- */
+
+.cp-doc--prose .wizard-progress {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 2rem;
+}
+
+.cp-doc--prose .wizard-step {
+  flex: 1;
+  border-top: 3px solid var(--line) !important;
+  padding-top: 0.7rem;
+  background: transparent !important;
+  color: var(--muted);
+}
+
+.cp-doc--prose .wizard-step.active { border-top-color: var(--green) !important; color: var(--green); }
+
+.cp-doc--prose .step-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-size: 0.72rem !important;
+  font-weight: 600;
+  margin-right: 0.45rem;
+}
+
+.cp-doc--prose .step-title {
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+}
+
+.cp-doc--prose .form-step { display: none; }
+.cp-doc--prose .form-step.active { display: block; }
+
+.cp-doc--prose .wizard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+/* notifications / success ------------------------------------------------ */
+
+.cp-doc--prose .notification {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 80;
+  max-width: 22rem;
+  background: var(--green) !important;
+  color: var(--paper-bright) !important;
+  border: 0 !important;
+  border-radius: 3px !important;
+  padding: 0.9rem 1.1rem !important;
+  box-shadow: 0 12px 30px rgba(23, 51, 38, 0.22) !important;
+  font-size: 0.86rem !important;
+}
+
+.cp-doc--prose .success-screen { text-align: center; padding: 3rem 1rem; }
+.cp-doc--prose .success-icon { font-size: 2.2rem !important; color: var(--green) !important; margin-bottom: 1rem; }
+
+.cp-doc--prose :is(.success-title, .success-message) { max-width: 52ch; margin-inline: auto; }
+
+/* --------------------------------------------------------------------------
+   Tables
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose .cp-tablewrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-block: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: var(--paper-bright);
+}
+
+.cp-doc--prose .cp-tablewrap > table { margin: 0 !important; min-width: 34rem; }
+
+.cp-doc--prose table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem !important;
+  background: transparent !important;
+}
+
+.cp-doc--prose thead th {
+  font-family: var(--font-ui) !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  color: var(--muted) !important;
+  background: var(--cream) !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--ink) !important;
+  padding: 0.7rem 0.85rem !important;
+  text-align: left;
+  vertical-align: bottom;
+  white-space: nowrap;
+}
+
+.cp-doc--prose tbody td {
+  border: 0 !important;
+  border-bottom: 1px solid var(--line) !important;
+  padding: 0.7rem 0.85rem !important;
+  color: var(--ink-soft);
+  vertical-align: top;
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.cp-doc--prose tbody tr:last-child td { border-bottom: 0 !important; }
+.cp-doc--prose tbody tr:hover td { background: var(--green-soft) !important; }
+
+.cp-doc--prose .table { --bs-table-bg: transparent; --bs-table-color: var(--ink-soft); }
+.cp-doc--prose .table-primary { --bs-table-bg: var(--green-soft) !important; --bs-table-color: var(--green) !important; }
+.cp-doc--prose .table-striped > tbody > tr:nth-of-type(odd) > * { --bs-table-bg-type: var(--cream); }
+
+.cp-doc--prose .info-table { width: 100%; font-size: 0.86rem !important; }
+
+/* --------------------------------------------------------------------------
+   Progress, timelines, badges, pills
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose .progress-container,
+.cp-doc--prose .progress-item { margin-bottom: 0.9rem; }
+
+.cp-doc--prose .progress-bar,
+.cp-doc--prose .progress-track {
+  height: 6px !important;
+  background: var(--sage) !important;
+  border-radius: 0 !important;
+  overflow: hidden;
+}
+
+.cp-doc--prose .progress-fill {
+  height: 100% !important;
+  background: var(--green) !important;
+  background-image: none !important;
+  border-radius: 0 !important;
+}
+
+.cp-doc--prose .progress-label {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.82rem !important;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.cp-doc--prose .timeline { position: relative; }
+.cp-doc--prose .timeline::before { background: var(--line) !important; width: 1px !important; }
+.cp-doc--prose .timeline-dot { background: var(--green) !important; border: 0 !important; }
+.cp-doc--prose .timeline-content {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  box-shadow: none !important;
+}
+.cp-doc--prose .timeline-date,
+.cp-doc--prose .timeline-year {
+  background: var(--paper-deep) !important;
+  color: var(--green) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 2px !important;
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cp-doc--prose :is(.badge, .pill, .tag, .player-type, .customer-type, .pill-tag) {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: var(--paper-deep) !important;
+  color: var(--green) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 2px !important;
+  padding: 0.22rem 0.5rem !important;
+  font-size: 0.68rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  line-height: 1.4 !important;
+}
+
+/* --------------------------------------------------------------------------
+   Charts, maps, data panels
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose .chart-container {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  padding: 1rem !important;
+  box-shadow: none !important;
+}
+
+.cp-doc--prose .chart-container canvas { max-width: 100% !important; }
+
+.cp-doc--prose .map-container {
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  overflow: hidden;
+}
+
+.cp-doc--prose .leaflet-tile {
+  filter: grayscale(0.55) sepia(0.12) brightness(1.02) contrast(0.95);
+}
+
+.cp-doc--prose .leaflet-container { font-family: var(--font-ui) !important; }
+
+/* --------------------------------------------------------------------------
+   Contracts
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose .subsection { margin-bottom: 1.6rem; }
+
+.cp-doc--prose .subsection-title {
+  font-family: var(--font-ui) !important;
+  font-size: 0.8rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  color: var(--green) !important;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: 0.6rem !important;
+}
+
+.cp-doc--prose .signature-line {
+  border-bottom: 1px solid var(--ink) !important;
+  height: 2.2rem;
+  margin-bottom: 0.35rem;
+}
+
+.cp-doc--prose .signature-label {
+  font-size: 0.68rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+  color: var(--muted) !important;
+}
+
+.cp-doc--prose .signature-block,
+.cp-doc--prose .signature-container { margin-top: 2rem; }
+
+.cp-doc--prose .signature-title {
+  font-size: 0.74rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em !important;
+  text-transform: uppercase;
+  color: var(--green) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Tools (calculators + prototype)
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose .calculator-form { margin-bottom: 1.5rem; }
+
+.cp-doc--prose .assumption-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding-block: 0.75rem !important;
+  background: transparent !important;
+}
+.cp-doc--prose .assumption-item:last-child { border-bottom: 0; }
+.cp-doc--prose .assumption-title { font-size: 0.86rem !important; font-weight: 600 !important; }
+.cp-doc--prose .assumption-desc { font-size: 0.78rem !important; color: var(--muted) !important; }
+
+.cp-doc--prose .result {
+  background: var(--paper-bright) !important;
+  background-image: none !important;
+  color: var(--ink) !important;
+  border-top: 2px solid var(--ink) !important;
+  border-radius: 0 !important;
+}
+.cp-doc--prose .result .result-label { color: var(--muted) !important; }
+.cp-doc--prose .result .result-value { color: var(--green) !important; }
+.cp-doc--prose .result-item {
+  background: var(--paper) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 0 !important;
+  padding: 0.9rem 1rem !important;
+}
+
+.cp-doc--prose .settings-form,
+.cp-doc--prose .analytics,
+.cp-doc--prose .dashboard,
+.cp-doc--prose .tables-grid,
+.cp-doc--prose .report-section {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 3px !important;
+  padding: clamp(1rem, 2vw, 1.5rem) !important;
+}
+
+.cp-doc--prose .report-actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+
+.cp-doc--prose .metric-card {
+  background: var(--cream) !important;
+  border: 0 !important;
+  border-left: 2px solid var(--green) !important;
+  border-radius: 0 !important;
+}
+.cp-doc--prose .metric-value { color: var(--green) !important; }
+
+.cp-doc--prose .calculation-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line);
+  padding-block: 0.55rem !important;
+  font-size: 0.86rem !important;
+}
+
+.cp-doc--prose .year-section { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
+.cp-doc--prose .year-title { font-size: 1rem !important; color: var(--green) !important; }
+
+.cp-doc--prose .chart-tab {
+  background: transparent !important;
+  color: var(--muted) !important;
+  border: 0 !important;
+  border-bottom: 2px solid transparent !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0.75rem !important;
+  font-size: 0.72rem !important;
+}
+.cp-doc--prose .chart-tab.active {
+  color: var(--green) !important;
+  border-bottom-color: var(--green) !important;
+}
+
+/* --------------------------------------------------------------------------
+   Generic dark bands (some documents colour whole sections)
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose :is(.bg-primary, .bg-dark, .bg-gradient) {
+  background-color: var(--paper-deep) !important;
+  background-image: none !important;
+  color: var(--ink) !important;
+  border-block: 1px solid var(--line);
+}
+.cp-doc--prose :is(.bg-light, .bg-white) { background-color: var(--cream) !important; }
+.cp-doc--prose :is(.text-primary, .text-info) { color: var(--green) !important; }
+.cp-doc--prose :is(.text-danger, .text-warning) { color: var(--terra) !important; }
+.cp-doc--prose :is(.text-success) { color: var(--green) !important; }
+
+/* --------------------------------------------------------------------------
+   Legacy entrance animations: keep the content, drop the risk
+   -------------------------------------------------------------------------- */
+
+.cp-doc--prose :is(.animate, [class*="slide-in"], .timeline-item, .fade-in-up, .fade-in, .reveal),
+.cp-doc--prose [style*="opacity:0"],
+.cp-doc--prose [style*="opacity: 0"] {
+  animation: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   Arabic contract
+   -------------------------------------------------------------------------- */
+
+.cp-page--ar .cp-doc--prose h1,
+.cp-page--ar .cp-doc--prose h2,
+.cp-page--ar .cp-doc--prose h3 {
+  font-family: "Tajawal", "Segoe UI", sans-serif !important;
+  letter-spacing: 0 !important;
+  line-height: 1.35 !important;
+}
+
+.cp-page--ar .cp-doc--prose :where(p, li, td, th, label, input, select, textarea, span, div) {
+  font-family: "Tajawal", "Segoe UI", sans-serif !important;
+  line-height: 1.85;
+}
+
+.cp-page--ar .cp-doc--prose .signature-label,
+.cp-page--ar .cp-doc--prose .subsection-title,
+.cp-page--ar .cp-doc--prose .section-title {
+  letter-spacing: 0 !important;
+  text-transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Pitch deck (its own visual world, same palette)
+   -------------------------------------------------------------------------- */
+
+.cp-doc--deck { color: var(--ink); }
+.cp-doc--deck .slide,
+.cp-doc--deck .slide:nth-child(even) {
+  background: var(--paper) !important;
+  color: var(--ink) !important;
+}
+.cp-doc--deck .slide :is(h1, h2, h3, h4, p, li, span, strong, em) { color: var(--ink) !important; }
+.cp-doc--deck .slide h1,
+.cp-doc--deck .slide h2 {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.035em !important;
+  line-height: 1.08 !important;
+}
+.cp-doc--deck :is(.problem-card, .metric-card, .stat-card, .revenue-stream, .team-member, .funding-ask) {
+  background: var(--paper-bright) !important;
+  border: 1px solid var(--line) !important;
+  border-left: 2px solid var(--green) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.cp-doc--deck .highlight {
+  color: var(--terra) !important;
+  background: var(--gold-soft) !important;
+  padding: 0.05em 0.28em !important;
+}
+.cp-doc--deck :is(.metric-value, .stat-number) {
+  font-family: var(--font-display) !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.03em !important;
+  color: var(--green) !important;
+}
+.cp-doc--deck .cta-button,
+.cp-doc--deck .btn {
+  background: var(--green) !important;
+  color: var(--paper-bright) !important;
+  border: 1px solid var(--green) !important;
+  border-radius: 2px !important;
+  font-family: var(--font-ui) !important;
+  font-size: 0.72rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+  padding: 0.8rem 1.3rem !important;
+}
+/* deck chrome must stay readable on cream */
+.cp-doc--deck .progress-bar { background: var(--line) !important; }
+.cp-doc--deck .progress-fill { background: var(--green) !important; }
+.cp-doc--deck .nav-dot { background: var(--line-strong) !important; }
+.cp-doc--deck .nav-dot.active { background: var(--green) !important; }
+
+/* --------------------------------------------------------------------------
+   Responsive
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .cp-doc--prose .container,
+  .cp-doc--prose .container-fluid { width: min(100% - 1.75rem, 1040px) !important; }
+  .cp-doc--prose .form-grid { grid-template-columns: 1fr !important; }
+}
+
+@media (max-width: 720px) {
+  .cp-doc--prose { font-size: 15.5px; }
+  .cp-doc--prose .container,
+  .cp-doc--prose .container-fluid { width: calc(100% - 2rem) !important; }
+  .cp-doc--prose :is(h2, .section-title) { font-size: 1.5rem !important; }
+  .cp-doc--prose .wizard-progress { flex-wrap: wrap; }
+  .cp-doc--prose .wizard-step { flex: 0 0 calc(50% - 0.4rem); }
+  .cp-doc--prose .result { padding: 1rem !important; }
+  .cp-doc--prose .cp-tablewrap > table { min-width: 30rem; }
+  .cp-doc--prose .notification { left: 1rem; right: 1rem; max-width: none; }
+}
+
+@media print {
+  .cp-doc--prose :is(.animate, [class*="slide-in"], .timeline-item) {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .cp-doc--prose .cp-tablewrap { overflow: visible; border: 0; }
+  .cp-doc--prose .cp-tablewrap > table { min-width: 0; }
+  .cp-doc--prose .chart-container,
+  .cp-doc--prose .card { break-inside: avoid; }
+}
+
+/* --------------------------------------------------------------------------
+   Arabic: Tajawal everywhere, chrome included
+   -------------------------------------------------------------------------- */
+
+.cp-page--ar,
+.cp-page--ar :not(.fas):not(.far):not(.fab):not([class*="fa-"]) {
+  font-family: "Tajawal", "Segoe UI", system-ui, sans-serif !important;
+}
+.cp-page--ar :is(h1, h2, h3, h4, h5, h6) {
+  font-family: "Tajawal", "Segoe UI", system-ui, sans-serif !important;
+  letter-spacing: 0 !important;
+  line-height: 1.4 !important;
+}
+.cp-page--ar :is(p, li, td, th, label, input, select, textarea) {
+  line-height: 1.9;
+}
+[lang="ar"],
+[lang="ar"] :not(.fas):not(.far):not(.fab):not([class*="fa-"]) {
+  font-family: "Tajawal", "Segoe UI", system-ui, sans-serif !important;
+}

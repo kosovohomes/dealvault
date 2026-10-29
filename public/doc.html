@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document — DealVault</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#214534">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/doc-skin.css?v=1">
+<link rel="stylesheet" href="/assets/css/vault.css?v=1">
+</head>
+<body class="cp-page">
+<a class="cp-skip" href="#main">Skip to content</a>
+<div class="cp-reading-bar" aria-hidden="true"><span id="readingBar"></span></div>
+<div class="cp-watermark-layer" id="watermarkLayer" aria-hidden="true"></div>
+<header class="cp-bar">
+  <div class="cp-bar__inner">
+    <a class="cp-brand" href="/">
+      <svg class="cp-brand__mark" viewBox="0 0 48 48" role="img" aria-label="DealVault vault dial"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+      <span class="cp-brand__text"><span class="cp-brand__name">DealVault</span><span class="cp-brand__sub">Deal room</span></span>
+    </a>
+    <nav class="cp-nav" aria-label="Primary">
+      <ul class="cp-nav__list">
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/projects">Projects</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/account">Account</a></li>
+      </ul>
+    </nav>
+    <div class="cp-bar__actions">
+      <a class="cp-btn cp-btn--ghost cp-btn--sm" id="roomLink" href="#">← Room</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="cp-intro">
+  <div class="cp-intro__inner">
+    <nav class="cp-crumbs" aria-label="Breadcrumb">
+      <a href="/projects">Projects</a><span class="cp-crumbs__sep">/</span>
+      <a href="#" id="crumbRoom">Room</a><span class="cp-crumbs__sep">/</span>
+      <span id="crumbDoc">Document</span>
+    </nav>
+    <div class="cp-intro__eyebrow">
+      <span class="cp-pill" id="docCategory">—</span>
+      <span class="cp-intro__note" id="docTagsNote">Confidential · watermarked</span>
+    </div>
+    <h1 id="docTitle">Opening the document…</h1>
+    <p class="cp-intro__lead" id="docSubtitle"></p>
+    <div class="cp-intro__meta" id="docMeta"></div>
+    <div class="cp-intro__actions">
+      <button class="cp-btn" type="button" data-review><span>Mark reviewed</span></button>
+      <button class="cp-btn" type="button" data-download><span>Download copy</span></button>
+      <button class="cp-btn" type="button" data-print><span>Print</span></button>
+    </div>
+  </div>
+</div>
+<section>
+  <div class="cp-reader">
+    <div class="cp-reader__main">
+      <div class="cp-note" style="margin-bottom:1.4rem">
+        <p id="docAudit">This document is issued to you personally, watermarked, and every open, download and print is recorded against your access receipt. Redistribution is prohibited under the agreement you signed. Figures are illustrative planning cases, not an offer of securities.</p>
+      </div>
+      <div id="docSections" class="cp-doc-embed"></div>
+      <div class="cp-reader__audit" id="docEnd" hidden>
+        <strong>End of document.</strong> Your reading of this document is recorded under your access receipt. To continue diligence, ask the owners a question from the project room, or download a watermarked copy for internal review.
+      </div>
+    </div>
+    <aside class="cp-reader__toc">
+      <div class="cp-sidebox">
+        <h3>Contents</h3>
+        <nav class="cp-toc-list" id="tocList" aria-label="Document sections"></nav>
+      </div>
+      <div class="cp-sidebox">
+        <h3>Your copy</h3>
+        <dl class="cp-kv">
+          <div><dt>Reader</dt><dd id="railName">—</dd></div>
+          <div><dt>Receipt</dt><dd id="railReceipt" class="is-mono">—</dd></div>
+          <div><dt>Watermark</dt><dd id="railHash" class="is-mono">—</dd></div>
+          <div><dt>Sections</dt><dd id="railSections">—</dd></div>
+        </dl>
+      </div>
+    </aside>
+  </div>
+</section>
+</main>
+<footer class="cp-foot">
+  <div class="cp-foot__inner">
+    <div class="cp-foot__top">
+      <div class="cp-foot__brand">
+        <svg viewBox="0 0 48 48" role="img" aria-label="DealVault mark" style="width:34px;height:34px;color:var(--green)"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+        <p class="cp-foot__tagline">A gated, audited deal room for private projects.</p>
+        <div class="cp-foot__contact"><a href="mailto:deals@dealvault.app">deals@dealvault.app</a><span>Amman · Dubai · Riyadh</span></div>
+      </div>
+      <div class="cp-foot__col"><h2>Platform</h2><ul><li><a href="/projects">Projects</a></li><li><a href="/account">Your account</a></li></ul></div>
+      <div class="cp-foot__col"><h2>Legal</h2><ul><li><a href="/legal#nda">Agreement</a></li><li><a href="/legal#privacy">Privacy</a></li></ul></div>
+    </div>
+    <div class="cp-foot__bottom">
+      <span>© <span data-year>2026</span> DealVault Operations. All rights reserved.</span>
+      <div class="cp-foot__legal"><a href="/legal#terms">Terms</a><a href="/legal#privacy">Privacy</a></div>
+    </div>
+    <p class="cp-foot__disclaimer">This document is confidential, watermarked and recorded. Redistribution is prohibited under the agreement you signed. Figures are illustrative planning cases, not an offer of securities.</p>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=1" defer></script>
+<script src="/assets/js/app.js?v=1" defer></script>
+<script src="/assets/js/tracker.js?v=1" defer></script>
+<script src="/assets/js/doc.js?v=1" defer></script>
+</body>
+</html>

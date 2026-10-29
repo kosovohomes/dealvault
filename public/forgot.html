@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reset password — DealVault</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#214534">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/vault.css?v=1">
+</head>
+<body class="cp-page">
+<a class="cp-skip" href="#main">Skip to content</a>
+<header class="cp-bar">
+  <div class="cp-bar__inner">
+    <a class="cp-brand" href="/">
+      <svg class="cp-brand__mark" viewBox="0 0 48 48" role="img" aria-label="DealVault vault dial"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+      <span class="cp-brand__text"><span class="cp-brand__name">DealVault</span><span class="cp-brand__sub">Deal room</span></span>
+    </a>
+    <nav class="cp-nav" aria-label="Primary"><ul class="cp-nav__list"><li class="cp-nav__item"><a class="cp-nav__link" href="/login">Sign in</a></li></ul></nav>
+    <div class="cp-bar__actions"></div>
+  </div>
+</header>
+<main id="main">
+<div class="cp-gate">
+  <div class="cp-gate__card">
+    <p class="cp-gate__kicker">Password reset</p>
+    <h1>Set things right.</h1>
+    <p class="cp-gate__lead">Request a reset code, then choose a new password. Resetting signs out every open session on every device — the safe way to recover an account.</p>
+
+    <div class="cp-demo-code" id="demoWrap" hidden>
+      <div>
+        <small>Development environment · your code</small>
+        <strong id="demoCode">––––––</strong>
+      </div>
+      <button type="button" id="copyCode">Copy</button>
+    </div>
+
+    <div class="cp-form-status" id="status" role="alert" aria-live="polite"></div>
+
+    <!-- STEP 1: request -->
+    <form id="requestCodeForm" novalidate>
+      <div class="cp-field">
+        <label for="email">Account email <span>Required</span></label>
+        <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+      </div>
+      <div class="cp-form-actions" style="margin-block-start:1.2rem">
+        <button class="cp-btn cp-btn--primary" type="submit" id="requestBtn">Send the reset code</button>
+      </div>
+    </form>
+
+    <!-- STEP 2: confirm -->
+    <form id="confirmForm" hidden>
+      <div class="cp-field cp-code-input">
+        <label for="code">Reset code <span>Required</span></label>
+        <input id="code" name="code" type="text" inputmode="numeric" maxlength="6" placeholder="000000" required>
+      </div>
+      <div class="cp-field">
+        <label for="password">New password <span>Required</span></label>
+        <input id="password" name="password" type="password" autocomplete="new-password" minlength="10" required>
+        <p class="cp-field__hint">At least 10 characters with upper case, lower case and a number.</p>
+      </div>
+      <div class="cp-form-actions" style="display:flex;gap:.8rem;flex-wrap:wrap;margin-block-start:1.2rem">
+        <button class="cp-btn cp-btn--primary" type="submit" id="confirmBtn">Set the new password</button>
+        <button class="cp-btn cp-btn--ghost" type="button" id="resendBtn">Send a new code</button>
+      </div>
+    </form>
+    <div class="cp-gate__foot">Remembered it after all? <a href="/login">Sign in</a></div>
+  </div>
+</div>
+</main>
+<script src="/assets/js/app.js?v=1" defer></script>
+<script src="/assets/js/forgot.js?v=1" defer></script>
+</body>
+</html>

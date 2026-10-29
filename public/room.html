@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data room — DealVault</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#214534">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/doc-skin.css?v=1">
+<link rel="stylesheet" href="/assets/css/vault.css?v=1">
+</head>
+<body class="cp-page">
+<a class="cp-skip" href="#main">Skip to content</a>
+<header class="cp-bar">
+  <div class="cp-bar__inner">
+    <a class="cp-brand" href="/">
+      <svg class="cp-brand__mark" viewBox="0 0 48 48" role="img" aria-label="DealVault vault dial"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+      <span class="cp-brand__text"><span class="cp-brand__name">DealVault</span><span class="cp-brand__sub">Deal room</span></span>
+    </a>
+    <nav class="cp-nav" aria-label="Primary">
+      <ul class="cp-nav__list">
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/projects">Projects</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/legal">Legal</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/account">Account</a></li>
+      </ul>
+    </nav>
+    <div class="cp-bar__actions">
+      <button class="cp-btn cp-btn--ghost cp-btn--sm" type="button" data-signout>Sign out</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="cp-intro">
+  <div class="cp-intro__inner">
+    <nav class="cp-crumbs" aria-label="Breadcrumb"><a href="/projects">Projects</a><span class="cp-crumbs__sep">/</span><span id="crumbProject">Room</span></nav>
+    <div class="cp-intro__eyebrow">
+      <span class="cp-pill">Approved · Confidential</span>
+      <span class="cp-intro__note" id="roomReceipt">—</span>
+    </div>
+    <h1 id="roomTitle">Loading the room…</h1>
+    <p class="cp-intro__lead" id="roomTagline"></p>
+    <div class="cp-intro__meta">
+      <span class="cp-tag" id="roomTotals">—</span>
+      <span class="cp-tag">Watermarked for you</span>
+      <span class="cp-tag">Downloads and prints recorded</span>
+    </div>
+  </div>
+</div>
+<section class="cp-section cp-section--tight">
+  <div class="cp-wrap">
+    <div class="cp-stat-row" id="roomStats">
+      <div><dt>—</dt><dd>Documents</dd></div>
+      <div><dt>—</dt><dd>Opened</dd></div>
+      <div><dt>—</dt><dd>Reviewed</dd></div>
+      <div><dt>—</dt><dd>Pages</dd></div>
+    </div>
+    <div class="cp-results">
+      <p><strong>Confidential library</strong> — every document is watermarked with your name and receipt, and each open, download and print is recorded.</p>
+      <p><a href="/account">See your own record</a></p>
+    </div>
+    <div class="cp-room-list" id="docList" aria-live="polite">
+      <div class="cp-vault-empty">Opening the room…</div>
+    </div>
+
+    <div class="cp-sidebox" style="margin-top:2.4rem;max-width:720px">
+      <h3>Diligence question</h3>
+      <p style="margin:0 0 1rem;font-size:.84rem;color:var(--ink-soft)">Ask the project owners anything about this project. Your question is attached to this room and to your access receipt; answers appear here and in your record.</p>
+      <form id="questionForm" novalidate>
+        <div class="cp-field">
+          <label for="questionBody">Your question <span>Required</span></label>
+          <textarea id="questionBody" name="question" minlength="12" placeholder="What would you like the owners to clarify?" required></textarea>
+        </div>
+        <div class="cp-form-status" id="questionStatus" role="alert" aria-live="polite"></div>
+        <button class="cp-btn cp-btn--primary" type="submit" id="questionBtn">Send the question</button>
+      </form>
+      <div id="questionList" style="margin-top:1.4rem"></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="cp-foot">
+  <div class="cp-foot__inner">
+    <div class="cp-foot__top">
+      <div class="cp-foot__brand">
+        <svg viewBox="0 0 48 48" role="img" aria-label="DealVault mark" style="width:34px;height:34px;color:var(--green)"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+        <p class="cp-foot__tagline">A gated, audited deal room for private projects.</p>
+        <div class="cp-foot__contact"><a href="mailto:deals@dealvault.app">deals@dealvault.app</a><span>Amman · Dubai · Riyadh</span></div>
+      </div>
+      <div class="cp-foot__col"><h2>Platform</h2><ul><li><a href="/projects">Projects</a></li><li><a href="/account">Your account</a></li></ul></div>
+      <div class="cp-foot__col"><h2>Legal</h2><ul><li><a href="/legal#nda">Agreement</a></li><li><a href="/legal#privacy">Privacy</a></li></ul></div>
+    </div>
+    <div class="cp-foot__bottom">
+      <span>© <span data-year>2026</span> DealVault Operations. All rights reserved.</span>
+      <div class="cp-foot__legal"><a href="/legal#terms">Terms</a><a href="/legal#privacy">Privacy</a></div>
+    </div>
+    <p class="cp-foot__disclaimer">Materials in this room are confidential, watermarked and recorded. Redistribution is prohibited under the agreement you signed. Figures are illustrative planning cases, not an offer of securities.</p>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=1" defer></script>
+<script src="/assets/js/app.js?v=1" defer></script>
+<script src="/assets/js/room.js?v=1" defer></script>
+</body>
+</html>

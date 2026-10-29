@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Request an account — DealVault</title>
+<meta name="description" content="Register for DealVault: a verified identity, an email confirmation, and access to non-confidential project briefs.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#214534">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/vault.css?v=1">
+</head>
+<body class="cp-page">
+<a class="cp-skip" href="#main">Skip to content</a>
+<header class="cp-bar">
+  <div class="cp-bar__inner">
+    <a class="cp-brand" href="/">
+      <svg class="cp-brand__mark" viewBox="0 0 48 48" role="img" aria-label="DealVault vault dial"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+      <span class="cp-brand__text"><span class="cp-brand__name">DealVault</span><span class="cp-brand__sub">Deal room</span></span>
+    </a>
+    <nav class="cp-nav" aria-label="Primary">
+      <ul class="cp-nav__list">
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/">Home</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/legal">Legal</a></li>
+      </ul>
+    </nav>
+    <div class="cp-bar__actions">
+      <a class="cp-btn cp-btn--ghost cp-btn--sm" href="/login">Sign in</a>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="cp-gate">
+  <div class="cp-gate__card">
+    <p class="cp-gate__kicker">Registration · Step 01 of 03</p>
+    <h1>Create your investor account.</h1>
+    <p class="cp-gate__lead">A verified identity is the price of the room. Register with your real name and firm — the platform records who read what, and project owners rely on that record.</p>
+
+    <div class="cp-form-status" id="status" role="alert" aria-live="polite"></div>
+
+    <form id="registerForm" novalidate>
+      <div class="cp-field-grid">
+        <div class="cp-field">
+          <label for="name">Full name <span>Required</span></label>
+          <input id="name" name="name" type="text" autocomplete="name" required>
+        </div>
+        <div class="cp-field">
+          <label for="email">Work email <span>Required</span></label>
+          <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required>
+        </div>
+        <div class="cp-field">
+          <label for="firm">Firm or company <span>Required</span></label>
+          <input id="firm" name="firm" type="text" autocomplete="organization" required>
+        </div>
+        <div class="cp-field">
+          <label for="country">Jurisdiction <span>Required</span></label>
+          <input id="country" name="country" type="text" autocomplete="country-name" placeholder="Jordan, UAE, …" required>
+        </div>
+        <div class="cp-field">
+          <label for="password">Password <span>Required</span></label>
+          <input id="password" name="password" type="password" autocomplete="new-password" minlength="10" required>
+          <p class="cp-field__hint">At least 10 characters with upper case, lower case and a number.</p>
+        </div>
+        <div class="cp-field">
+          <label for="password2">Repeat password <span>Required</span></label>
+          <input id="password2" name="password2" type="password" autocomplete="new-password" required>
+        </div>
+        <div class="cp-field">
+          <label for="type">Investor type <span>Required</span></label>
+          <select id="type" name="type" required>
+            <option value="">Select…</option>
+            <option value="angel">Angel</option>
+            <option value="vc">Venture capital</option>
+            <option value="family">Family office</option>
+            <option value="strategic">Strategic / corporate</option>
+            <option value="other">Other professional</option>
+          </select>
+        </div>
+        <div class="cp-field">
+          <label for="ticket">Intended ticket <span>Required</span></label>
+          <select id="ticket" name="ticket" required>
+            <option value="">Select…</option>
+            <option value="under50k">Under US$50K</option>
+            <option value="50k-250k">US$50K – 250K</option>
+            <option value="250k-1m">US$250K – 1M</option>
+            <option value="1m-plus">US$1M+</option>
+            <option value="undecided">Undecided</option>
+          </select>
+        </div>
+      </div>
+      <div class="cp-checks">
+        <label class="cp-check">
+          <input type="checkbox" id="accredited" data-check="accredited">
+          <span>I confirm that I invest or evaluate private investments in a professional capacity, and the details above are accurate.</span>
+        </label>
+        <label class="cp-check">
+          <input type="checkbox" id="terms" data-check="terms">
+          <span>I accept the <a href="/legal#terms">terms of use</a> and understand that my activity on the platform is recorded under the <a href="/legal#nda">access agreement</a> I will sign before any confidential material opens.</span>
+        </label>
+      </div>
+      <div class="cp-form-actions" style="display:flex;gap:.8rem;flex-wrap:wrap">
+        <button class="cp-btn cp-btn--primary" type="submit" id="submitBtn">Create account</button>
+        <a class="cp-btn cp-btn--ghost" href="/login">I already have an account</a>
+      </div>
+    </form>
+    <div class="cp-gate__foot">
+      Step 02 is email verification with a six-digit code. Step 03 is the confidentiality agreement — signed once, before any project's room opens.
+    </div>
+  </div>
+</div>
+</main>
+<script src="/assets/js/app.js?v=1" defer></script>
+<script src="/assets/js/register.js?v=1" defer></script>
+</body>
+</html>

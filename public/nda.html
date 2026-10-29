@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign the agreement — DealVault</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#214534">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/doc-skin.css?v=1">
+<link rel="stylesheet" href="/assets/css/vault.css?v=1">
+</head>
+<body class="cp-page">
+<a class="cp-skip" href="#main">Skip to content</a>
+<header class="cp-bar">
+  <div class="cp-bar__inner">
+    <a class="cp-brand" href="/">
+      <svg class="cp-brand__mark" viewBox="0 0 48 48" role="img" aria-label="DealVault vault dial"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+      <span class="cp-brand__text"><span class="cp-brand__name">DealVault</span><span class="cp-brand__sub">Deal room</span></span>
+    </a>
+    <nav class="cp-nav" aria-label="Primary">
+      <ul class="cp-nav__list">
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/projects">Projects</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/legal">Legal</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/account">Account</a></li>
+      </ul>
+    </nav>
+    <div class="cp-bar__actions">
+      <button class="cp-btn cp-btn--ghost cp-btn--sm" type="button" data-signout>Sign out</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="cp-intro">
+  <div class="cp-intro__inner">
+    <nav class="cp-crumbs" aria-label="Breadcrumb"><a href="/projects">Projects</a><span class="cp-crumbs__sep">/</span><span>The agreement</span></nav>
+    <div class="cp-intro__eyebrow">
+      <span class="cp-pill">Legal gate</span>
+      <span class="cp-intro__note" id="agreementVersion">—</span>
+    </div>
+    <h1>Read, initial, sign.</h1>
+    <p class="cp-intro__lead">The Investor Confidentiality &amp; Access Agreement covers every project on the platform. You sign it once; each project's room still opens only after individual approval. The signature is electronic — your name, the timestamp and a hash of this exact text are stored on your record and visible to you in the account area.</p>
+  </div>
+</div>
+<section class="cp-section cp-section--tight">
+  <div class="cp-wrap">
+    <div class="cp-access__grid">
+      <div class="cp-access__main">
+        <div class="cp-agreement" id="agreementText" tabindex="0">
+          <p>Loading the agreement…</p>
+        </div>
+
+        <form id="ndaForm" novalidate style="margin-block-start:1.8rem">
+          <div class="cp-checks" id="consentChecks">
+            <label class="cp-check"><input type="checkbox" data-check="nda"><span>—</span></label>
+          </div>
+          <div class="cp-field-grid cp-field-grid--sign">
+            <div class="cp-field cp-signature">
+              <label for="signature">Type your full name to sign <span>Required</span></label>
+              <input id="signature" name="signature" type="text" autocomplete="name" required>
+              <p class="cp-field__hint">Must match the name on your account exactly.</p>
+            </div>
+            <div class="cp-field">
+              <label for="initials">Your initials <span>Required</span></label>
+              <input id="initials" name="initials" type="text" maxlength="8" placeholder="LH" required>
+            </div>
+          </div>
+          <div class="cp-form-status" id="status" role="alert" aria-live="polite"></div>
+          <div class="cp-form-actions" style="display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;margin-block-start:1.2rem">
+            <button class="cp-btn cp-btn--primary" type="submit" id="submitBtn">Sign and return</button>
+            <a class="cp-btn cp-btn--ghost" href="/projects">Not now</a>
+          </div>
+        </form>
+      </div>
+      <aside class="cp-brief__side">
+        <div class="cp-sidebox cp-sidebox--action">
+          <h3>What signing means</h3>
+          <ul class="cp-highlights">
+            <li>You can read confidential material only in projects the operator approves for you.</li>
+            <li>Reading time, sections viewed, downloads and prints are recorded.</li>
+            <li>Documents carry your name, email and receipt as a watermark.</li>
+            <li>Use is limited to evaluating an investment in that project.</li>
+            <li>The obligation runs three years; access can be revoked at any time.</li>
+          </ul>
+        </div>
+        <div class="cp-sidebox">
+          <h3>Your signature record</h3>
+          <dl class="cp-kv" id="signRecord">
+            <div><dt>Name</dt><dd id="recName">—</dd></div>
+            <div><dt>Email</dt><dd id="recEmail">—</dd></div>
+            <div><dt>Agreement</dt><dd id="recVersion">—</dd></div>
+            <div><dt>Text hash</dt><dd id="recHash" class="is-mono">—</dd></div>
+          </dl>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="cp-foot">
+  <div class="cp-foot__inner">
+    <div class="cp-foot__top">
+      <div class="cp-foot__brand">
+        <svg viewBox="0 0 48 48" role="img" aria-label="DealVault mark" style="width:34px;height:34px;color:var(--green)"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+        <p class="cp-foot__tagline">A gated, audited deal room for private projects.</p>
+        <div class="cp-foot__contact"><a href="mailto:deals@dealvault.app">deals@dealvault.app</a><span>Amman · Dubai · Riyadh</span></div>
+      </div>
+      <div class="cp-foot__col"><h2>Platform</h2><ul><li><a href="/projects">Projects</a></li><li><a href="/account">Your account</a></li></ul></div>
+      <div class="cp-foot__col"><h2>Legal</h2><ul><li><a href="/legal#nda">Agreement</a></li><li><a href="/legal#privacy">Privacy</a></li></ul></div>
+    </div>
+    <div class="cp-foot__bottom">
+      <span>© <span data-year>2026</span> DealVault Operations. All rights reserved.</span>
+      <div class="cp-foot__legal"><a href="/legal#terms">Terms</a><a href="/legal#privacy">Privacy</a></div>
+    </div>
+    <p class="cp-foot__disclaimer">Materials on this platform are provided for discussion and internal evaluation only. They are not an offer of securities. Figures are illustrative planning cases, not forecasts.</p>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=1" defer></script>
+<script src="/assets/js/app.js?v=1" defer></script>
+<script src="/assets/js/nda.js?v=1" defer></script>
+</body>
+</html>

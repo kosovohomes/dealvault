@@ -1,0 +1,17 @@
+{
+  "name": "dealvault",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DealVault — gated multi-project deal room: showcase, NDA gate, per-project approval, audited document access.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "demo": "node scripts/seed.js && node server/index.js",
+    "reset": "node scripts/reset.js",
+    "seed": "node scripts/seed.js --force"
+  }
+}

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project showcase — DealVault</title>
+<meta name="description" content="Browse non-confidential project briefs on DealVault: sector, stage, geography and raise size, with a clear path into each project's gated room.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#214534">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/assets/css/site.css?v=1">
+<link rel="stylesheet" href="/assets/css/doc-skin.css?v=1">
+<link rel="stylesheet" href="/assets/css/vault.css?v=1">
+</head>
+<body class="cp-page">
+<a class="cp-skip" href="#main">Skip to content</a>
+<header class="cp-bar">
+  <div class="cp-bar__inner">
+    <a class="cp-brand" href="/">
+      <svg class="cp-brand__mark" viewBox="0 0 48 48" role="img" aria-label="DealVault vault dial"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+      <span class="cp-brand__text"><span class="cp-brand__name">DealVault</span><span class="cp-brand__sub">Deal room</span></span>
+    </a>
+    <nav class="cp-nav" aria-label="Primary">
+      <ul class="cp-nav__list">
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/">Home</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/projects" aria-current="page">Projects</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/legal">Legal</a></li>
+        <li class="cp-nav__item"><a class="cp-nav__link" href="/account">Account</a></li>
+      </ul>
+    </nav>
+    <div class="cp-bar__actions">
+      <button class="cp-btn cp-btn--ghost cp-btn--sm" type="button" data-signout>Sign out</button>
+    </div>
+  </div>
+</header>
+<main id="main">
+<div class="cp-intro">
+  <div class="cp-intro__inner">
+    <nav class="cp-crumbs" aria-label="Breadcrumb"><a href="/">DealVault</a><span class="cp-crumbs__sep">/</span><span>Projects</span></nav>
+    <div class="cp-intro__eyebrow">
+      <span class="cp-pill">The showcase</span>
+      <span class="cp-intro__note" id="introNote">Registered and verified view</span>
+    </div>
+    <h1>Project briefs, before the gate.</h1>
+    <p class="cp-intro__lead">Everything here is non-confidential. Each profile tells you what the project is, where it stands and how large the raise is. Express interest in the ones worth a closer look — the room opens per project once the operator approves.</p>
+    <div class="cp-intro__meta">
+      <span class="cp-tag" id="catalogueTag">Loading the catalogue…</span>
+      <span class="cp-tag">Briefs are not offers</span>
+      <span class="cp-tag">Every access is audited</span>
+    </div>
+  </div>
+</div>
+<section class="cp-section cp-section--tight">
+  <div class="cp-wrap">
+    <div class="cp-filters" id="filters">
+      <div class="cp-field">
+        <label for="filterSearch">Search</label>
+        <input type="search" id="filterSearch" placeholder="Name, thesis, market…">
+      </div>
+      <div class="cp-field">
+        <label for="filterSector">Sector</label>
+        <select id="filterSector"><option value="">All sectors</option></select>
+      </div>
+      <div class="cp-field">
+        <label for="filterStage">Stage</label>
+        <select id="filterStage"><option value="">All stages</option></select>
+      </div>
+      <div class="cp-field">
+        <label for="filterGeography">Geography</label>
+        <select id="filterGeography"><option value="">All geographies</option></select>
+      </div>
+      <div class="cp-field">
+        <label for="filterTicket">Raise size</label>
+        <select id="filterTicket">
+          <option value="">Any size</option>
+          <option value="under500k">Under US$500K</option>
+          <option value="500k-1m">US$500K – 1M</option>
+          <option value="1m-plus">US$1M and above</option>
+        </select>
+      </div>
+      <button class="cp-btn cp-btn--ghost cp-btn--sm cp-filters__reset" type="button" id="resetFilters">Reset</button>
+    </div>
+    <div class="cp-results">
+      <p id="resultCount"><strong>—</strong> projects shown</p>
+      <p>Approval is per project · NDA signed once</p>
+    </div>
+    <div class="cp-vault-grid" id="projectGrid" aria-live="polite"></div>
+    <div class="cp-vault-empty" id="emptyState" hidden>No projects match those filters. Loosen one and try again.</div>
+  </div>
+</section>
+</main>
+<footer class="cp-foot">
+  <div class="cp-foot__inner">
+    <div class="cp-foot__top">
+      <div class="cp-foot__brand">
+        <svg viewBox="0 0 48 48" role="img" aria-label="DealVault mark" style="width:34px;height:34px;color:var(--green)"><circle cx="24" cy="24" r="22" fill="currentColor"/><circle cx="24" cy="24" r="11.5" fill="none" stroke="#F5F1E8" stroke-width="2"/><circle cx="24" cy="24" r="2.4" fill="#b0862f"/></svg>
+        <p class="cp-foot__tagline">A gated, audited deal room for private projects.</p>
+        <div class="cp-foot__contact"><a href="mailto:deals@dealvault.app">deals@dealvault.app</a><span>Amman · Dubai · Riyadh</span></div>
+      </div>
+      <div class="cp-foot__col"><h2>Platform</h2><ul><li><a href="/projects">Projects</a></li><li><a href="/nda">The agreement</a></li><li><a href="/account">Your account</a></li></ul></div>
+      <div class="cp-foot__col"><h2>Legal</h2><ul><li><a href="/legal#terms">Terms</a></li><li><a href="/legal#privacy">Privacy</a></li><li><a href="/legal#disclaimer">Disclaimer</a></li></ul></div>
+    </div>
+    <div class="cp-foot__bottom">
+      <span>© <span data-year>2026</span> DealVault Operations. All rights reserved.</span>
+      <div class="cp-foot__legal"><a href="/legal#terms">Terms</a><a href="/legal#privacy">Privacy</a></div>
+    </div>
+    <p class="cp-foot__disclaimer">Materials on this platform are provided for discussion and internal evaluation only. They are not an offer of securities. Figures are illustrative planning cases, not forecasts.</p>
+  </div>
+</footer>
+<script src="/assets/js/site.js?v=1" defer></script>
+<script src="/assets/js/app.js?v=1" defer></script>
+<script src="/assets/js/projects.js?v=1" defer></script>
+</body>
+</html>
